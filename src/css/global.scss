@@ -15,7 +15,6 @@ $desktop-width: 1024px;
 
 
 // creaing mixin for margin and padding classes
-
 @mixin styling($style, $direction, $shorthand, $i ) {
     .#{$shorthand}-#{$direction}-#{$i} {
         #{$style}-#{$direction}: #{$i}em;
@@ -36,15 +35,17 @@ h1, h2, h3, h4 {
 
 
 // creating dynamic child grid elements
-@for $i from 1 through 10 {
-    .col-#{$i} {
+@for $i from 1 through 12 {
+    .sm#{$i} {
 
         @include desktop {
-            width: #{$i} + 0%;
+            width: #{100 / $i + '%'};
         }
         @include tablet {
-            width: #{$i} + 0%;
+            width: #{100 / $i + '%'};
         }
+
+        width: #{100 / $i + '%'};
         display: flex;
         display: flex;
         max-width: 100%;
@@ -53,8 +54,6 @@ h1, h2, h3, h4 {
         // background-color: red;
 
         min-height: 1px;
-        width: 100%;
-
     }
     .p-#{$i} {
         padding: #{$i}em;
@@ -64,7 +63,6 @@ h1, h2, h3, h4 {
     }
 
     // defining parameter options for styling() mixin
-
     @include styling(margin, top, m, #{$i});
     @include styling(margin, right, m, #{$i});
     @include styling(margin, bottom, m, #{$i});
