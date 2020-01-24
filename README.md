@@ -4,7 +4,7 @@
 
 # `UXSALT`
 
-UXSALT is an undefined framework of library.
+UXSALT is an undefined framework or library.
 
 ## `Grid system`
 
