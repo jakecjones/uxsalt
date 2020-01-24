@@ -23,7 +23,6 @@ Any number bewtween 1 and 12 can be used to define how many columns an item may 
 
 ```css
 .sm-4 .md-1 .lg-12
-
 ```
 
 
