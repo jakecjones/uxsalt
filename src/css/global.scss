@@ -37,29 +37,29 @@ h1, h2, h3, h4 {
 // creating dynamic child grid elements
 @for $i from 1 through 12 {
     .sm#{$i} {
-
-        @include desktop {
-            width: #{100 / $i + '%'};
-        }
-        @include tablet {
-            width: #{100 / $i + '%'};
-        }
-
         width: #{100 / $i + '%'};
         display: flex;
         display: flex;
         max-width: 100%;
-
-        // uncomment color to test grid spacing
-        // background-color: red;
-
         min-height: 1px;
     }
-    .p-#{$i} {
-        padding: #{$i}em;
+    .md#{$i} {
+        @include tablet {
+            width: #{100 / $i + '%'};
+            display: flex;
+            display: flex;
+            max-width: 100%;
+            min-height: 1px;        
+        }
     }
-    .m-#{$i} {
-        margin: #{$i} + 0em;
+    .lg#{$i} {
+        @include desktop {
+            width: #{100 / $i + '%'};
+            display: flex;
+            display: flex;
+            max-width: 100%;
+            min-height: 1px;
+        }
     }
 
     // defining parameter options for styling() mixin
@@ -76,7 +76,6 @@ h1, h2, h3, h4 {
 }
 
 // setting overides to native parent .col
-
 .wrap {
     flex-flow: wrap;
 }
