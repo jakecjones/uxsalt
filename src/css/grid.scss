@@ -13,7 +13,6 @@ $desktop-width: 1024px;
   }
 }
 
-
 // creaing mixin for margin and padding classes
 @mixin styling($style, $direction, $shorthand, $i ) {
     .#{$shorthand}-#{$direction}-#{$i} {
