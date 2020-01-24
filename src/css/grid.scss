@@ -13,6 +13,12 @@ $desktop-width: 1024px;
   }
 }
 
+@mixin mobile {
+    @media (max-width: #{$tablet-width}) {
+        @content;
+      }
+  }
+
 // creaing mixin for margin and padding classes
 @mixin styling($style, $direction, $shorthand, $i ) {
     .#{$shorthand}-#{$direction}-#{$i} {
@@ -30,43 +36,37 @@ $resetInlineItems: h1, h2, h3, h4, p;
 }
 
 // defining a parent grid item
-.col {
+.container {
     margin: 0 auto;
     display: flex;
     align-items: flex-start;
 }
 
-
-// creating dynamic child grid elements
+// creating dynamic child grd elements
 @for $i from 1 through 12 {
-    .sm#{$i} {
-        width: #{100 / $i + '%'};
-        display: flex;
-        display: flex;
-        max-width: 100%;
-        min-height: 1px;
-    }
-    .md#{$i} {
-        @include tablet {
-            width: #{100 / $i + '%'};
-            display: flex;
-            display: flex;
-            max-width: 100%;
-            min-height: 1px;        
+
+    @mixin grid($gridSizes, $screenSizes) {
+        @each $size in $gridSizes {
+            @each $screen in $screenSizes{
+
+                .#{$size}-#{$i} {
+                    @include #{$screen} {
+                        width: #{100 / $i + '%'};
+                        display: flex;
+                        display: flex;
+                        max-width: 100%;
+                        min-height: 1px;   
+                    }
+                }
+            }
         }
     }
-    .lg#{$i} {
-        @include desktop {
-            width: #{100 / $i + '%'};
-            display: flex;
-            display: flex;
-            max-width: 100%;
-            min-height: 1px;
-        }
-    }
+
+    $gridSizes: sm, md, lg;
+    $screenSizes: mobile, tablet, large;
+    @include grid($gridSizes, $screenSizes);
 
     // defining parameter options for styling() mixin
-    
     $directions: top, right, bottom, left;
     @each $item in $directions {
         @include styling(margin, $item, m, #{$i});
@@ -74,7 +74,7 @@ $resetInlineItems: h1, h2, h3, h4, p;
     }
 }
 
-// setting overides to native parent .col
+// setting overides to native parent .container
 .wrap {
     flex-flow: wrap;
 }
@@ -85,7 +85,3 @@ $resetInlineItems: h1, h2, h3, h4, p;
 .align-bottom {
     align-items: flex-end;
 }
-
-
-
-  
