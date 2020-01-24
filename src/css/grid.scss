@@ -20,9 +20,13 @@ $desktop-width: 1024px;
     }
 }
 
-h1, h2, h3, h4 {
-    margin: 0;
-    padding: 0;
+$resetInlineItems: h1, h2, h3, h4, p;
+
+@each $inlineItem in $resetInlineItems {
+    #{$inlineItem} {
+        margin: 0;
+        padding: 0;
+    }
 }
 
 // defining a parent grid item
@@ -62,16 +66,12 @@ h1, h2, h3, h4 {
     }
 
     // defining parameter options for styling() mixin
-    @include styling(margin, top, m, #{$i});
-    @include styling(margin, right, m, #{$i});
-    @include styling(margin, bottom, m, #{$i});
-    @include styling(margin, left, m, #{$i});
-
-    @include styling(padding, top, p, #{$i});
-    @include styling(padding, right, p, #{$i});
-    @include styling(padding, bottom, p, #{$i});
-    @include styling(padding, left, p, #{$i});
-
+    
+    $directions: top, right, bottom, left;
+    @each $item in $directions {
+        @include styling(margin, $item, m, #{$i});
+        @include styling(padding, $item, p, #{$i});
+    }
 }
 
 // setting overides to native parent .col
